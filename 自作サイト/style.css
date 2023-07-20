@@ -1,0 +1,361 @@
+body{
+    font-family: 'Zen Maru Gothic', sans-serif;
+    color: aliceblue;
+}
+
+#wrapper{
+    width:100%;
+    height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+  }
+  canvas{
+    position: absolute;
+    bottom: 0;
+  left:0;
+    width: 100%;
+}
+body{
+	animation: bgchange 20s ease infinite;/*変化の時間を変更したい場合は20sの部分を好きな時間に変更*/
+}
+
+@keyframes bgchange{
+      0%   {background:#464858;}/*変化させたい色*/
+      25%  {background:#43494d;}/*変化させたい色*/
+      50%  {background:#17172d;}/*変化させたい色*/
+      75%  {background:#4d5460;}/*変化させたい色*/
+      90%  {background:hwb(201 20% 74%);}/*変化させたい色*/
+      100% {background:#3c3e5b;}/*変化させたい色*/
+}
+
+html,body{
+	height: 100%;/*高さを100%にして描画エリアをとる*/
+}
+
+#particles-js{ 
+	position:fixed;/*描画固定*/
+	z-index:-1;/*描画を一番下に*/
+	width: 100%;
+	height: 100%;
+	
+}
+
+
+#wrapper{
+	position: relative;/*描画を#particles-jsよりも上にするためposition:relative;を指定*/
+	z-index: 1;/*z-indexの数字を大きくすることで描画を#particles-jsよりも上に*/
+	width:100%;
+	height: 100%;
+}
+
+.carousel-inner{
+    margin:40px auto;
+    width:30%;
+    object-fit: cover;
+    padding:20px 60px;
+}
+img {
+    width: 100%; /* bodyの幅に対する割合 */
+  }
+h1{
+    color: white;
+}
+/* .music_list{
+    margin:40px auto;
+    width:30%;
+    object-fit: cover;
+    padding:20px 60px;
+} */
+
+
+/*========= LoadingのためのCSS ===============*/
+
+/* Loading背景画面設定　*/
+#splash {
+    /*fixedで全面に固定*/
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	text-align:center;
+	color:#fff;
+}
+
+/* Loading画像中央配置　*/
+#splash_text {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+    z-index: 999;
+	transform: translate(-50%, -50%);
+	color: #fff;
+	width: 100%;
+}
+
+/*IE11対策用バーの線の高さ※対応しなければ削除してください*/
+#splash_text svg{
+    height: 2px;
+}
+
+/*割れる画面のアニメーション*/
+.loader_cover {
+    width: 100%;
+    height: 50%;
+    background-color: #333;
+    transition: all .2s cubic-bezier(.04, .435, .315, .9);
+    transform: scaleY(1);
+}
+/*上の画面*/
+.loader_cover-up {
+    transform-origin: center top;
+}
+
+/*下の画面*/
+.loader_cover-down {
+    position: absolute;
+    bottom: 0;
+    transform-origin: center bottom;
+}
+/*クラス名がついたらY軸方向に0*/
+.coveranime {
+    transform: scaleY(0);
+}
+
+/*==================================================
+スライダーのためのcss
+===================================*/
+.slider {/*横幅94%で左右に余白を持たせて中央寄せ*/
+    width:94%;
+    margin:0 auto;
+}
+
+.slider img {
+    width:60vw;/*スライダー内の画像を60vwにしてレスポンシブ化*/
+    height:auto;
+}
+
+.slider .slick-slide {
+	transform: scale(0.8);/*左右の画像のサイズを80%に*/
+	transition: all .5s;/*拡大や透過のアニメーションを0.5秒で行う*/
+	opacity: 0.5;/*透過50%*/
+}
+
+.slider .slick-slide.slick-center{
+	transform: scale(1);/*中央の画像のサイズだけ等倍に*/
+	opacity: 1;/*透過なし*/
+}
+
+
+/*矢印の設定*/
+
+/*戻る、次へ矢印の位置*/
+.slick-prev, 
+.slick-next {
+    position: absolute;/*絶対配置にする*/
+    top: 42%;
+    cursor: pointer;/*マウスカーソルを指マークに*/
+    outline: none;/*クリックをしたら出てくる枠線を消す*/
+    border-top: 2px solid #666;/*矢印の色*/
+    border-right: 2px solid #666;/*矢印の色*/
+    height: 15px;
+    width: 15px;
+}
+
+.slick-prev {/*戻る矢印の位置と形状*/
+    left: -1.5%;
+    transform: rotate(-135deg);
+}
+
+.slick-next {/*次へ矢印の位置と形状*/
+    right: -1.5%;
+    transform: rotate(45deg);
+}
+
+/*ドットナビゲーションの設定*/
+
+.slick-dots {
+    text-align:center;
+	margin:20px 0 0 0;
+}
+
+.slick-dots li {
+    display:inline-block;
+	margin:0 5px;
+}
+
+.slick-dots button {
+    color: transparent;
+    outline: none;
+    width:8px;/*ドットボタンのサイズ*/
+    height:8px;/*ドットボタンのサイズ*/
+    display:block;
+    border-radius:50%;
+    background:#ccc;/*ドットボタンの色*/
+}
+
+.slick-dots .slick-active button{
+    background:#333;/*ドットボタンの現在地表示の色*/
+}
+
+/*==================================================
+共通　横並びのための設定
+===================================*/
+
+.gnavi{
+    display: flex;
+    flex-wrap: wrap;/*スマホ表示折り返し用なのでPCのみなら不要*/
+    margin:0 0 50px 0;
+    list-style: none;
+}
+
+.gnavi li a{
+    display: block;
+    padding:10px 30px;
+    text-decoration: none;
+    color: #f2f2f2;
+}
+
+.gnavi li{
+    margin-bottom:20px;
+}
+
+/*==================================================
+　5-3-8 円が線に変化
+===================================*/
+
+
+.gnavi li a{
+    /*円の基点とするためrelativeを指定*/
+	position: relative;
+}
+
+.gnavi li.current a,
+.gnavi li a:hover{
+	color:#cccecf;
+}
+
+.gnavi li a::after {
+    content: '';
+    /*絶対配置で線の位置を決める*/
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    /*線になる丸の形状*/
+    width: 100%;
+    height: 5px;
+    border-radius: 50%;
+    background:#e3eff2;
+    /*アニメーションの指定*/
+    transition: all .3s;
+    transform: scale(0.04, 1);/*X方向0.04、Y方向1*/
+    transform-origin:center bottom;/*中央下部基点*/
+}
+
+/*現在地とhoverの設定*/
+.gnavi li.current a::after,
+.gnavi li a:hover::after {
+    height: 2px;/*縦幅を変化*/
+    border-radius: 0;/*丸みをなくす*/    
+    transform: scale(0.8, 1);/*X方向0.8、Y方向1にスケール拡大*/
+}
+
+/*=== 9-1-3 マウスが動いてスクロールを促す ====*/
+
+/*スクロールダウン全体の場所*/
+.scrolldown3{
+    /*描画位置※位置は適宜調整してください*/
+	position:absolute;
+	bottom:10px;
+	right:50%;
+    /*マウスの動き1.6秒かけて動く永遠にループ*/
+	animation:mousemove 1.6s ease-in-out infinite;
+}
+
+/*下からの距離が変化して上から下に動く*/
+@keyframes mousemove{
+      0%{bottom:10px;}
+      50%{bottom:5px;}
+     100%{bottom:10px;}
+ }
+
+/*Scrollテキストの描写*/
+.scrolldown3 span{
+    /*描画位置*/
+	position: absolute;
+	left:-15px;
+	bottom:45px;
+    /*テキストの形状*/
+	color: #eee;
+	font-size: 0.7rem;
+	letter-spacing: 0.05em;
+}
+
+/*マウスの中の線描写 */
+.scrolldown3 span::after{
+	content: "";
+    /*描画位置*/
+	position: absolute;
+	top:10px;
+	left:17px;
+    /*線の形状*/
+	width: 1px;
+	height: 15px;
+	background: #eee;
+    /*線の動き1.4秒かけて動く。永遠にループ*/
+	animation: mousepathmove 1.4s linear infinite;
+	opacity:0;
+}
+
+/*上からの距離・不透明度・高さが変化して上から下に流れる*/
+@keyframes mousepathmove{
+	0%{
+		height:0;
+		top:10px;
+		opacity: 0;
+	}
+	50%{
+		height:15px;
+		opacity: 1;
+	}
+	100%{
+		height:0;
+		top:30px;
+		opacity: 0;
+	}
+}
+
+/*マウスの描写 */
+.scrolldown3:before {
+    content: "";
+    /*描画位置*/
+    position: absolute;
+    bottom:0;
+    left:-10px;
+    /*マウスの形状*/
+	width:25px;
+	height:37px;
+	border-radius: 10px;
+	border:1px solid #eee;
+}
+
+
+/*マウスの中の丸の描写*/
+.scrolldown3:after{
+	content:"";
+    /*描画位置*/
+	position: absolute;
+	bottom:26px;
+	left:0;
+    /*丸の形状*/
+	width:5px;
+	height: 5px;
+	border-radius: 50%;
+	border:1px solid #eee;
+}
+
+.title{
+    z-index: 998;
+}
